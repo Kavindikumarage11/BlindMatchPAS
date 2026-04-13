@@ -135,3 +135,6 @@ C:\Users\asus\BlindMatchPAS\obj\Debug\net8.0\refint\BlindMatchPAS.dll
 C:\Users\asus\BlindMatchPAS\obj\Debug\net8.0\BlindMatchPAS.pdb
 C:\Users\asus\BlindMatchPAS\obj\Debug\net8.0\BlindMatchPAS.genruntimeconfig.cache
 C:\Users\asus\BlindMatchPAS\obj\Debug\net8.0\ref\BlindMatchPAS.dll
+C:\Users\asus\BlindMatchPAS\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\asus\BlindMatchPAS\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\asus\BlindMatchPAS\obj\Debug\net8.0\BlindMatchPAS.MvcApplicationPartsAssemblyInfo.cs

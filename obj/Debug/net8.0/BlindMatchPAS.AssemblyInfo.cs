@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlindMatchPAS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e9bc928a5fe8db6c4d1668cd54b32243cf5752d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73c93d6d2304bc06ed0caa35909d164b5532ac41")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlindMatchPAS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlindMatchPAS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
