@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using BlindMatchPAS.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BlindMatchPAS.Data.ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
