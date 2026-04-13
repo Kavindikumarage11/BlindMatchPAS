@@ -32,6 +32,28 @@ namespace BlindMatchPAS.Controllers
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
+      
         }
+
+        [HttpPost]
+public async Task<IActionResult> ApproveProposal(int id)
+{
+    // 1. Find the specific proposal in the database using its unique ID
+    var proposal = await _context.ProjectProposals.FindAsync(id);
+
+    // 2. Check if the proposal actually exists
+    if (proposal != null)
+    {
+        // 3. Update the status: This is where the "Matching" logic happens
+        proposal.IsMatched = true; 
+
+        // 4. Save the changes to the database asynchronously
+        await _context.SaveChangesAsync();
     }
+
+    // 5. Refresh the page by redirecting back to the Supervisor's list view
+    return RedirectToAction("Index"); 
+}
+    }
+
 }
