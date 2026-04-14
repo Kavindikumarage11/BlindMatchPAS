@@ -9,13 +9,14 @@ namespace BlindMatchPAS.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        // Constructor to initialize the database context
         public ProposalController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Proposal/Index
-        // Displays the list of all submitted proposals
+        // Retrieves and displays all proposals submitted by the student
         public async Task<IActionResult> Index()
         {
             var proposals = await _context.ProjectProposals.ToListAsync();
@@ -23,14 +24,14 @@ namespace BlindMatchPAS.Controllers
         }
 
         // GET: Proposal/Create
-        // Displays the form to submit a new project proposal
+        // Returns the view to create a new project proposal
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Proposal/Create
-        // Handles the submission and saves the proposal to the database
+        // Saves the new proposal to the database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProjectProposal proposal)
@@ -39,13 +40,14 @@ namespace BlindMatchPAS.Controllers
             {
                 _context.Add(proposal);
                 await _context.SaveChangesAsync();
+                TempData["Message"] = "Proposal submitted successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return View(proposal);
         }
 
         // POST: Proposal/RevealSupervisor
-        // Logic to reveal the supervisor identity once a match is confirmed
+        // Logic to flip the identity reveal switch once a match is confirmed
         [HttpPost]
         public async Task<IActionResult> RevealSupervisor(int id)
         {
@@ -56,16 +58,16 @@ namespace BlindMatchPAS.Controllers
                 return NotFound();
             }
 
-            // Only reveal identity if the supervisor has already matched/approved it
+            // Security Check: Only reveal if the supervisor has already matched it
             if (proposal.IsMatched)
             {
                 proposal.IsIdentityRevealed = true;
                 await _context.SaveChangesAsync();
-                TempData["Message"] = "Supervisor identity revealed successfully!";
+                TempData["Message"] = "Supervisor identity has been revealed!";
             }
             else
             {
-                TempData["Error"] = "This proposal has not been matched yet.";
+                TempData["Error"] = "Cannot reveal identity until a match is confirmed.";
             }
 
             return RedirectToAction(nameof(Index));

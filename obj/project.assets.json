@@ -4433,11 +4433,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asus\\BlindMatchPAS\\BlindMatchPAS.csproj",
+      "projectUniqueName": "C:\\Users\\asus\\Desktop\\BlindMatchPAS\\BlindMatchPAS.csproj",
       "projectName": "BlindMatchPAS",
-      "projectPath": "C:\\Users\\asus\\BlindMatchPAS\\BlindMatchPAS.csproj",
+      "projectPath": "C:\\Users\\asus\\Desktop\\BlindMatchPAS\\BlindMatchPAS.csproj",
       "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asus\\BlindMatchPAS\\obj\\",
+      "outputPath": "C:\\Users\\asus\\Desktop\\BlindMatchPAS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
