@@ -1,6 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container mt-5">
+    <div class="card shadow-sm border-0 p-5">
+        <h1 class="text-primary fw-bold mb-4"><i class="bi bi-shield-check me-2"></i>@ViewData["Title"]</h1>
+        <p class="lead text-muted">At BlindMatch PAS, we take data privacy and unbiased evaluation very seriously.</p>
+        <hr class="my-4">
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h4 class="fw-bold text-dark">1. Blind Anonymity</h4>
+                <p>All project proposals are stored without student identity tags in the initial review phase. Supervisors can only see the technical content (Title, Abstract, and Tech Stack) to ensure 100% merit-based approval.</p>
+            </div>
+            <div class="col-md-6">
+                <h4 class="fw-bold text-dark">2. Identity Revelation</h4>
+                <p>Personal data is only revealed once both the Student and Supervisor have reached a confirmed match through our automated "Reveal" protocol. This prevents early-stage bias.</p>
+            </div>
+            <div class="col-md-6">
+                <h4 class="fw-bold text-dark">3. Data Security</h4>
+                <p>We use industry-standard encryption and ASP.NET Core Identity protocols to ensure that your project ideas and personal profiles remain secure from unauthorized access.</p>
+            </div>
+            <div class="col-md-6">
+                <h4 class="fw-bold text-dark">4. Academic Integrity</h4>
+                <p>By using this platform, you agree to submit original work. Our system logs activity to maintain the integrity of the project allocation process.</p>
+            </div>
+        </div>
+
+        <div class="mt-5 p-3 bg-light rounded border-start border-4 border-primary">
+            <p class="mb-0 italic small text-secondary">
+                <strong>Note to Auditors:</strong> This system is developed as a course project for the "Software Development Tools and Practices" module (2026).
+            </p>
+        </div>
+    </div>
+</div>
