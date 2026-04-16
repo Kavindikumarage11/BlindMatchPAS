@@ -13,30 +13,20 @@
                 <div class="card-body p-5">
                     <form asp-controller="Account" asp-action="Login" method="post">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Email Address</label>
+                            <label class="form-label">Email Address</label>
                             <input type="email" name="email" class="form-control rounded-pill" placeholder="name@example.com" required />
                         </div>
                         <div class="mb-4">
-                            <label class="form-label fw-bold">Password</label>
+                            <label class="form-label">Password</label>
                             <input type="password" name="password" class="form-control rounded-pill" placeholder="Enter password" required />
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm fw-bold">
-                            Login to System
-                        </button>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm fw-bold">Login to System</button>
                     </form>
                 </div>
-                
                 @if (ViewBag.ErrorMessage != null)
                 {
-                    <div class="alert alert-danger mx-3 mb-3 text-center">
-                        @ViewBag.ErrorMessage
-                    </div>
+                    <div class="alert alert-danger mx-3">@ViewBag.ErrorMessage</div>
                 }
-                
-                <div class="card-footer bg-light text-center py-3 rounded-bottom-4">
-                    <p class="small mb-0 text-muted">Forgot password? Contact Project Lead.</p>
-                </div>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlindMatchPAS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+682405b674ebecb13488ceaa5cf814cf6ed6605c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6739f697dc9b52e0451103ffca60056378f5ccf")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlindMatchPAS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlindMatchPAS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

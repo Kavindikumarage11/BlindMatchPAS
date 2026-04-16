@@ -2,85 +2,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container-fluid bg-light py-5 mb-5 shadow-sm">
-    <div class="container text-center py-5">
-        <h1 class="display-3 fw-bold text-primary mb-3">BlindMatch PAS</h1>
-        <p class="lead fs-4 text-secondary mx-auto" style="max-width: 800px;">
-            A transparent and unbiased Project Allocation System. Connect with the right research partners through our secure blind matching technology.
-        </p>
-        <div class="mt-4">
-            <a asp-controller="Proposal" asp-action="Create" class="btn btn-primary btn-lg px-5 rounded-pill shadow">Get Started</a>
-            <a href="#features" class="btn btn-outline-secondary btn-lg px-5 rounded-pill ms-2">Learn More</a>
-        </div>
+<div class="container py-5">
+    <div class="text-center mb-5 p-5 bg-dark text-white rounded shadow-lg">
+        <h1 class="display-4 fw-bold">Welcome to BlindMatch PAS</h1>
+        <p class="lead">A Centralized Research Proposal Management System for Blind Evaluations.</p>
+        <hr class="my-4 border-light w-25 mx-auto">
+        <p>Ensuring fairness and transparency in academic project matching.</p>
     </div>
-</div>
 
-<div class="container my-5" id="features">
     <div class="row g-4 text-center">
         <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm p-4">
+            <div class="card h-100 shadow-sm border-0">
                 <div class="card-body">
-                    <div class="feature-icon bg-primary bg-gradient text-white mb-4 rounded-3 d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <i class="bi bi-mortarboard-fill fs-3"></i>
-                    </div>
-                    <h3 class="fw-bold">Students</h3>
-                    <p class="text-muted">Submit your innovative project proposals and wait for the perfect supervisor to match with your vision.</p>
-                    <a asp-controller="Proposal" asp-action="Index" class="btn btn-link text-decoration-none fw-bold">My Dashboard →</a>
+                    <div class="mb-3 text-primary"><i class="bi bi-mortarboard-fill fs-1"></i></div>
+                    <h3 class="card-title">Students</h3>
+                    <p class="card-text text-muted">Submit your innovative research proposals and track their progress anonymously.</p>
+                    <a asp-controller="Proposal" asp-action="Create" class="btn btn-primary rounded-pill px-4">Submit Proposal</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm p-4">
+            <div class="card h-100 shadow-sm border-0 border-top border-primary border-5">
                 <div class="card-body">
-                    <div class="feature-icon bg-success bg-gradient text-white mb-4 rounded-3 d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <i class="bi bi-person-badge-fill fs-3"></i>
-                    </div>
-                    <h3 class="fw-bold">Supervisors</h3>
-                    <p class="text-muted">Review proposals based on technical merit alone. Approve projects without knowing the student's identity.</p>
-                    <a asp-controller="Supervisor" asp-action="Index" class="btn btn-link text-decoration-none fw-bold text-success">Review Panel →</a>
+                    <div class="mb-3 text-success"><i class="bi bi-person-check-fill fs-1"></i></div>
+                    <h3 class="card-title">Supervisors</h3>
+                    <p class="card-text text-muted">Review anonymized project proposals and select the best matches for your expertise.</p>
+                    <a asp-controller="Supervisor" asp-action="Index" class="btn btn-success rounded-pill px-4">Review Portal</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm p-4">
+            <div class="card h-100 shadow-sm border-0">
                 <div class="card-body">
-                    <div class="feature-icon bg-dark bg-gradient text-white mb-4 rounded-3 d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <i class="bi bi-shield-lock-fill fs-3"></i>
-                    </div>
-                    <h3 class="fw-bold">Administration</h3>
-                    <p class="text-muted">Complete oversight of the matching process. Manage users, tracks statistics, and ensure system integrity.</p>
-                    <a asp-controller="Admin" asp-action="Index" class="btn btn-link text-decoration-none fw-bold text-dark">Admin Panel →</a>
+                    <div class="mb-3 text-danger"><i class="bi bi-shield-lock-fill fs-1"></i></div>
+                    <h3 class="card-title">Administrators</h3>
+                    <p class="card-text text-muted">Manage system users, oversee the matching process, and generate final reports.</p>
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-danger rounded-pill px-4">Admin Panel</a>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="bg-white py-5 border-top border-bottom">
-    <div class="container text-center py-4">
-        <h2 class="fw-bold mb-5">How the Blind Match Works</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="fw-bold fs-1 text-primary mb-2">01</div>
-                <h5>Submit</h5>
-                <p class="small text-muted">Students post project details.</p>
-            </div>
-            <div class="col-md-3">
-                <div class="fw-bold fs-1 text-primary mb-2">02</div>
-                <h5>Review</h5>
-                <p class="small text-muted">Supervisors check proposals blindly.</p>
-            </div>
-            <div class="col-md-3">
-                <div class="fw-bold fs-1 text-primary mb-2">03</div>
-                <h5>Match</h5>
-                <p class="small text-muted">A match is formed upon approval.</p>
-            </div>
-            <div class="col-md-3">
-                <div class="fw-bold fs-1 text-primary mb-2">04</div>
-                <h5>Reveal</h5>
-                <p class="small text-muted">Identities revealed to both parties.</p>
             </div>
         </div>
     </div>
