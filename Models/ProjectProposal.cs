@@ -17,10 +17,14 @@ namespace BlindMatchPAS.Models
         [Required]
         public string TechStack { get; set; } = string.Empty;
 
-        // Thama match unada nadda kiyala balanna
+        // Added Category property to resolve the controller error
+        [Required]
+        public string Category { get; set; } = string.Empty;
+
+        // Tracks if the proposal has been matched/approved by a supervisor
         public bool IsMatched { get; set; } = false;
 
-        // Lead ge role ekata adala "Identity Reveal" logic ekata meka ona wenawa
+        // Logic for revealing the student's identity after a match is made
         public bool IsIdentityRevealed { get; set; } = false;
     }
 }

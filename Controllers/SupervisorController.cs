@@ -15,13 +15,37 @@ namespace BlindMatchPAS.Controllers
         }
 
         // GET: Supervisor/Index
-        // Displays the supervisor dashboard with all submitted project proposals
-        public async Task<IActionResult> Index()
-        {
-            // Fetching all project proposals from the database asynchronously
-            var proposals = await _context.ProjectProposals.ToListAsync();
-            return View(proposals);
-        }
+public async Task<IActionResult> Index(string searchString, string category)
+{
+    // Start with a query for all proposals
+    var proposalsQuery = from p in _context.ProjectProposals
+                         select p;
+
+    // Filter by Search String (Title)
+    if (!string.IsNullOrEmpty(searchString))
+    {
+        proposalsQuery = proposalsQuery.Where(s => s.Title!.Contains(searchString));
+    }
+
+    // Filter by Category
+    if (!string.IsNullOrEmpty(category))
+    {
+        proposalsQuery = proposalsQuery.Where(x => x.Category == category);
+    }
+
+    // Fetch distinct categories for the dropdown menu
+    var categories = await _context.ProjectProposals
+        .Select(p => p.Category)
+        .Distinct()
+        .ToListAsync();
+
+    // Store filter data in ViewBag to keep UI states
+    ViewBag.Categories = categories;
+    ViewBag.CurrentSearch = searchString;
+    ViewBag.CurrentCategory = category;
+
+    return View(await proposalsQuery.ToListAsync());
+}
 
         // POST: Supervisor/Approve
         // Handles the project approval/matching logic
