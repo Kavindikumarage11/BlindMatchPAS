@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using BlindMatchPAS.Data;
 using Microsoft.EntityFrameworkCore;
+using BlindMatchPAS.Data;
+using BlindMatchPAS.Models;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace BlindMatchPAS.Controllers
 {
@@ -15,59 +17,74 @@ namespace BlindMatchPAS.Controllers
         }
 
         // GET: Supervisor/Index
-public async Task<IActionResult> Index(string searchString, string category)
-{
-    // Start with a query for all proposals
-    var proposalsQuery = from p in _context.ProjectProposals
-                         select p;
-
-    // Filter by Search String (Title)
-    if (!string.IsNullOrEmpty(searchString))
-    {
-        proposalsQuery = proposalsQuery.Where(s => s.Title!.Contains(searchString));
-    }
-
-    // Filter by Category
-    if (!string.IsNullOrEmpty(category))
-    {
-        proposalsQuery = proposalsQuery.Where(x => x.Category == category);
-    }
-
-    // Fetch distinct categories for the dropdown menu
-    var categories = await _context.ProjectProposals
-        .Select(p => p.Category)
-        .Distinct()
-        .ToListAsync();
-
-    // Store filter data in ViewBag to keep UI states
-    ViewBag.Categories = categories;
-    ViewBag.CurrentSearch = searchString;
-    ViewBag.CurrentCategory = category;
-
-    return View(await proposalsQuery.ToListAsync());
-}
-
-        // POST: Supervisor/Approve
-        // Handles the project approval/matching logic
-        [HttpPost]
-        public async Task<IActionResult> Approve(int id)
+        public async Task<IActionResult> Index(string searchString, string category)
         {
-            // 1. Locate the specific proposal by its unique ID
+            // 1. Start with a query for all proposals
+            var proposalsQuery = _context.ProjectProposals.AsQueryable();
+
+            // 2. Filter by Search String (Title)
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                proposalsQuery = proposalsQuery.Where(s => s.Title.Contains(searchString));
+            }
+
+            // 3. Filter by Category
+            if (!string.IsNullOrEmpty(category))
+            {
+                proposalsQuery = proposalsQuery.Where(x => x.Category == category);
+            }
+
+            // 4. Fetch distinct categories for the dropdown menu
+            var categories = await _context.ProjectProposals
+                .Select(p => p.Category)
+                .Distinct()
+                .ToListAsync();
+
+            // Store data in ViewBag for the UI
+            ViewBag.Categories = categories;
+            ViewBag.CurrentSearch = searchString;
+            ViewBag.CurrentCategory = category;
+
+            return View(await proposalsQuery.ToListAsync());
+        }
+
+        // GET: Supervisor/Details/5
+        // This makes the "Review Details" button work!
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var proposal = await _context.ProjectProposals
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (proposal == null)
+            {
+                return NotFound();
+            }
+
+            return View(proposal);
+        }
+
+        // POST: Supervisor/Match
+        // Handles the project matching logic from the Details page or Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Match(int id)
+        {
             var proposal = await _context.ProjectProposals.FindAsync(id);
 
             if (proposal != null)
             {
-                // 2. Set the Match status to true
                 proposal.IsMatched = true; 
-
-                // 3. Persist changes to the database
+                _context.Update(proposal);
                 await _context.SaveChangesAsync();
                 
-                // Optional: Add a success message to TempData
-                TempData["Success"] = "Proposal approved successfully!";
+                TempData["Success"] = "Project matched successfully!";
             }
 
-            // 4. Redirect back to the index view to refresh the list
             return RedirectToAction(nameof(Index));
         }
     }

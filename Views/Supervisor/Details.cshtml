@@ -1,0 +1,40 @@
+@model BlindMatchPAS.Models.ProjectProposal
+
+@{
+    ViewData["Title"] = "Proposal Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Project Review: @Model.Title</h4>
+        </div>
+        <div class="card-body p-4">
+            <h5 class="text-primary">Abstract</h5>
+            <p class="text-muted" style="white-space: pre-wrap;">@Model.Abstract</p>
+
+            <hr />
+
+            <h5 class="text-primary">Technology Stack</h5>
+            <p>
+                @foreach (var tech in Model.TechStack.Split(','))
+                {
+                    <span class="badge bg-info text-dark me-1">@tech.Trim()</span>
+                }
+            </p>
+
+            <hr />
+
+            <div class="mt-4">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                
+                @if (!Model.IsMatched)
+                {
+                    <form asp-action="Match" asp-route-id="@Model.Id" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-success px-4">Accept & Match Proposal</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
