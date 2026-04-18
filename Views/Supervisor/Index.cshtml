@@ -1,1 +1,33 @@
+Razor CSHTML
 @model IEnumerable<BlindMatchPAS.Models.ProjectProposal>
+
+<div class="container mt-4">
+    <h2>Blind Review Dashboard</h2>
+    <form asp-action="Index" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="searchCategory" class="form-control" placeholder="Filter by Research Area..." />
+            <button class="btn btn-outline-secondary" type="submit">Filter</button>
+        </div>
+    </form>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Tech Stack</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Category</td>
+                    <td>@item.TechStack</td>
+                    <td><a class="btn btn-sm btn-success" asp-action="Details" asp-route-id="@item.Id">Review Blindly</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
