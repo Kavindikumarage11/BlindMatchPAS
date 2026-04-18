@@ -1,24 +1,22 @@
-using Microsoft.AspNetCore.Mvc;
-using BlindMatchPAS.Data;
-using System.Threading.Tasks;
-
-namespace BlindMatchPAS.Controllers
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> ConfirmMatch(int proposalId)
 {
-    public class AccountController : Controller
+    // Find the specific proposal from the database
+    var proposal = await _context.ProjectProposals.FindAsync(proposalId);
+
+    if (proposal != null)
     {
-        private readonly ApplicationDbContext _context;
+        // Logic: Once supervisor confirms, the 'Blind' state is removed
+        proposal.IsMatched = true; 
+        proposal.IsIdentityRevealed = true; // Identity is now visible to both parties
 
-        public AccountController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        _context.Update(proposal);
+        await _context.SaveChangesAsync();
 
-        // KANISHKA: PLEASE IMPLEMENT THE MATCH REVEAL LOGIC HERE
-        [HttpPost]
-        public async Task<IActionResult> ConfirmMatch(int proposalId)
-        {
-            // Empty logic for now
-            return RedirectToAction("Index", "Supervisor");
-        }
+        TempData["SuccessMessage"] = "Match Confirmed! Student and Supervisor identities are now revealed.";
     }
+
+    // Redirect back to the Supervisor Dashboard
+    return RedirectToAction("Index", "Supervisor");
 }
