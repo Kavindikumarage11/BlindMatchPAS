@@ -1,2 +1,30 @@
+Razor CSHTML
 @model BlindMatchPAS.Models.ProjectProposal
-@{ ViewData["Title"] = "Submit Proposal"; }
+
+<div class="container mt-4">
+    <h2>Submit Project Proposal</h2>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Project Title</label>
+            <input asp-for="Title" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Category" class="form-label">Research Area</label>
+            <select asp-for="Category" class="form-select" required>
+                <option value="">-- Select Category --</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="Web">Web Development</option>
+                <option value="Mobile">Mobile Computing</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Abstract" class="form-label">Abstract</label>
+            <textarea asp-for="Abstract" class="form-control" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TechStack" class="form-label">Technical Stack</label>
+            <input asp-for="TechStack" class="form-control" placeholder="e.g. C#, SQL, React" required />
+        </div>
+        
+    </form>
+</div>
