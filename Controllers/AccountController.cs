@@ -1,22 +1,37 @@
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> ConfirmMatch(int proposalId)
+using Microsoft.AspNetCore.Mvc;
+using BlindMatchPAS.Models;
+using Microsoft.EntityFrameworkCore;
+using BlindMatchPAS.Data;
+
+namespace BlindMatchPAS.Controllers
 {
-    // Find the specific proposal from the database
-    var proposal = await _context.ProjectProposals.FindAsync(proposalId);
-
-    if (proposal != null)
+    public class AccountController : Controller
     {
-        // Logic: Once supervisor confirms, the 'Blind' state is removed
-        proposal.IsMatched = true; 
-        proposal.IsIdentityRevealed = true; // Identity is now visible to both parties
+        private readonly ApplicationDbContext _context;
 
-        _context.Update(proposal);
-        await _context.SaveChangesAsync();
+        public AccountController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-        TempData["SuccessMessage"] = "Match Confirmed! Student and Supervisor identities are now revealed.";
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmMatch(int proposalId)
+        {
+            var proposal = await _context.ProjectProposals.FindAsync(proposalId);
+
+            if (proposal != null)
+            {
+                proposal.IsMatched = true;
+                proposal.IsIdentityRevealed = true;
+
+                _context.Update(proposal);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Match Confirmed!";
+            }
+
+            return RedirectToAction("Index", "Supervisor");
+        }
     }
-
-    // Redirect back to the Supervisor Dashboard
-    return RedirectToAction("Index", "Supervisor");
 }
