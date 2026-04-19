@@ -1,1 +1,25 @@
 @model IEnumerable<BlindMatchPAS.Models.ProjectProposal>
+<div class="container mt-4">
+    <h2 class="text-danger">Admin Oversight Panel</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Project Title</th>
+                <th>Status</th>
+                <th>Matched?</th>
+                <th>Identity Revealed?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@(item.IsMatched ? "Allocated" : "Pending")</td>
+                    <td>@item.IsMatched</td>
+                    <td>@item.IsIdentityRevealed</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+______________
